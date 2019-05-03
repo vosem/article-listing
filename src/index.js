@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider} from 'react-redux';
 import store from './store';
 import './index.css';
 import App from './components/App';
-import { getReadableStories } from './selectors/story';
-import { doArchiveStory } from './actions/archive';
+// import { getReadableStories } from './selectors/story';
+// import { doArchiveStory } from './actions/archive';
 import * as serviceWorker from './serviceWorker';
 
 // const stories = [
@@ -24,18 +25,20 @@ import * as serviceWorker from './serviceWorker';
 //         objectID: 1,
 //     },
 // ];
-function render() {
+// function render() {
     ReactDOM.render(
-        <App
-            stories={getReadableStories(store.getState())}
-            onArchive={id => store.dispatch(doArchiveStory(id))}
-        />,
+        <Provider store={store}>
+            <App
+                // stories={getReadableStories(store.getState())}
+                // onArchive={id => store.dispatch(doArchiveStory(id))}
+            />
+        </Provider>,
         document.getElementById('root')
     );
-}
+// }
 
-store.subscribe(render);
-render();
+// store.subscribe(render);
+// render();
 
 
 
